@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürpriz!</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #ffe6e6; overflow: hidden; }
+        .container { text-align: center; transition: all 0.3s; }
+        .hidden { display: none; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; border: none; border-radius: 25px; margin: 10px; transition: transform 0.2s; }
+        #btnBeniAc { background-color: #ff4d4d; color: white; }
+        #btnEvet { background-color: #4CAF50; color: white; }
+        #btnHayir { background-color: #808080; color: white; }
+        h1 { color: #d63384; }
+        .kalp { font-size: 100px; color: #ff1a1a; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div id="sayfa1" class="container">
+        <button id="btnBeniAc" onclick="sayfaGec(2)">Beni Aç</button>
+    </div>
+
+    <div id="sayfa2" class="container hidden">
+        <h1>Benimle çıkar mısın?</h1>
+        <button id="btnEvet" onclick="sayfaGec(3)">Evet</button>
+        <button id="btnHayir" onclick="buyutEvet()">Hayır</button>
+    </div>
+
+    <div id="sayfa3" class="container hidden">
+        <h1>Biliyordum! ❤️</h1>
+        <div class="kalp">♥</div>
+    </div>
+
+    <script>
+        let evetBoyut = 1;
+
+        function sayfaGec(n) {
+            document.getElementById('sayfa1').classList.add('hidden');
+            document.getElementById('sayfa2').classList.add('hidden');
+            document.getElementById('sayfa3').classList.add('hidden');
+            document.getElementById('sayfa' + n).classList.remove('hidden');
+        }
+
+        function buyutEvet() {
+            evetBoyut += 0.5; // Her hayırda %50 büyür
+            const btnEvet = document.getElementById('btnEvet');
+            btnEvet.style.transform = `scale(${evetBoyut})`;
+            
+            // Buton çok büyürse diğerlerinin üstüne binmemesi için z-index ekleyelim
+            btnEvet.style.zIndex = "100";
+        }
+    </script>
+</body>
+</html>s
